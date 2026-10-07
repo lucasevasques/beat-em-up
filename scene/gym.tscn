@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cs05pblcxgrmu"]
+
+[ext_resource type="PackedScene" uid="uid://crbuue0ovltvv" path="res://scene/player.tscn" id="1_bx025"]
+[ext_resource type="PackedScene" uid="uid://cnx6vp3eoxw8f" path="res://scene/dummy.tscn" id="2_ewo1x"]
+
+[node name="Gym" type="Node2D" unique_id=682745261]
+
+[node name="Player" parent="." unique_id=1805131256 instance=ExtResource("1_bx025")]
+position = Vector2(40, 357)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1154385997]
+position = Vector2(2, -45)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1417881619]
+polygon = PackedVector2Array(1, 275, 265, 275, 296, 219, 391, 219, 418, 274, 640, 275, 640, 0, -47, 1)
+
+[node name="Dummy" parent="." unique_id=1733696945 instance=ExtResource("2_ewo1x")]
+position = Vector2(421, 358)

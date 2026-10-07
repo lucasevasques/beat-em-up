@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cnx6vp3eoxw8f"]
+
+[ext_resource type="Texture2D" uid="uid://clpcom1m2qkx0" path="res://icon.svg" id="1_rdt0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nljr0"]
+size = Vector2(30, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yc80"]
+size = Vector2(35, 13)
+
+[node name="Dummy" type="CharacterBody2D" unique_id=1733696945]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1685153082]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_nljr0")
+
+[node name="Icon" type="Sprite2D" parent="CollisionShape2D" unique_id=35226505]
+position = Vector2(0, -21.5)
+scale = Vector2(0.234375, 0.46875)
+texture = ExtResource("1_rdt0c")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=472854885]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1584118507]
+position = Vector2(-0.5, -38.5)
+shape = SubResource("RectangleShape2D_0yc80")
+debug_color = Color(0.9266004, 0.2332224, 0.36152965, 0.41960785)

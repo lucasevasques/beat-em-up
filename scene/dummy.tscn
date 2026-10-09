@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cnx6vp3eoxw8f"]
 
 [ext_resource type="Texture2D" uid="uid://clpcom1m2qkx0" path="res://icon.svg" id="1_rdt0c"]
+[ext_resource type="Script" uid="uid://d0f5612btxi1s" path="res://script/entity_component.gd" id="2_nljr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nljr0"]
 size = Vector2(30, 17)
@@ -25,3 +26,9 @@ texture = ExtResource("1_rdt0c")
 position = Vector2(-0.5, -38.5)
 shape = SubResource("RectangleShape2D_0yc80")
 debug_color = Color(0.9266004, 0.2332224, 0.36152965, 0.41960785)
+
+[node name="EntityComponent" type="Node" parent="." unique_id=1356778352 node_paths=PackedStringArray("entity_parent", "hitbox")]
+script = ExtResource("2_nljr0")
+entity_parent = NodePath("..")
+hitbox = NodePath("../HitBox")
+metadata/_custom_type_script = "uid://d0f5612btxi1s"

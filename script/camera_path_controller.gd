@@ -12,6 +12,8 @@ func _ready() -> void:
 	origin = curve.get_point_position(0)
 	
 func _physics_process(delta: float) -> void:
+	if player == null:
+		return
 	var target_position: Vector2 = player.global_position - origin 
 	target_position.x = clampf(target_position.x, 0, curve.get_point_position(2).x - origin.x)
 	camera_target.progress = target_position.x

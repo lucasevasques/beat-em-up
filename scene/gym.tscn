@@ -104,6 +104,8 @@ corner_radius_bottom_left = 4
 ProgressBar/styles/background = SubResource("StyleBoxFlat_r0ofq")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_sjin7")
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0yc80"]
+
 [node name="Gym" type="Node2D" unique_id=682745261]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2043779257]
@@ -114,7 +116,7 @@ tile_set = SubResource("TileSet_wkpy8")
 tile_map_data = PackedByteArray("AAD//wQAAAAFAAIAAAD//wUAAAAGAAEAAAD//wYAAAACAAIAAAAAAAQAAAAHAAEAAAAAAAUAAAACAAEAAAAAAAYAAAABAAIAAAABAAQAAAAHAAEAAAABAAUAAAACAAEAAAABAAYAAAABAAIAAAACAAQAAAAHAAEAAAACAAUAAAACAAEAAAACAAYAAAABAAIAAAADAAQAAAAHAAEAAAADAAUAAAACAAEAAAADAAYAAAABAAIAAAAEAAQAAAAHAAEAAAAEAAUAAAACAAEAAAAEAAYAAAABAAIAAAAFAAQAAAAHAAEAAAAFAAUAAAACAAEAAAAFAAYAAAABAAIAAAAGAAQAAAAHAAEAAAAGAAUAAAACAAEAAAAGAAYAAAABAAIAAAAHAAQAAAAHAAEAAAAHAAUAAAAAAAIAAAAHAAYAAAAEAAIAAAAIAAMAAAAFAAIAAAAIAAQAAAABAAIAAAAJAAMAAAAHAAEAAAAJAAQAAAABAAIAAAAKAAMAAAADAAIAAAAKAAQAAAABAAIAAAALAAQAAAAHAAEAAAALAAUAAAAGAAEAAAALAAYAAAACAAIAAAAMAAQAAAAHAAEAAAAMAAUAAAACAAEAAAAMAAYAAAABAAIAAAANAAQAAAAHAAEAAAANAAUAAAACAAEAAAANAAYAAAABAAIAAAAOAAQAAAAHAAEAAAAOAAUAAAACAAEAAAAOAAYAAAABAAIAAAAPAAQAAAAHAAEAAAAPAAUAAAACAAEAAAAPAAYAAAABAAIAAAAQAAQAAAAHAAEAAAAQAAUAAAACAAEAAAAQAAYAAAABAAIAAAARAAQAAAAHAAEAAAARAAUAAAACAAEAAAARAAYAAAABAAIAAAASAAQAAAAHAAEAAAASAAUAAAACAAEAAAASAAYAAAABAAIAAAATAAQAAAAHAAEAAAATAAUAAAACAAEAAAATAAYAAAABAAIAAAAUAAQAAAAHAAEAAAAUAAUAAAACAAEAAAAUAAYAAAABAAIAAAAVAAQAAAAHAAEAAAAVAAUAAAACAAEAAAAVAAYAAAABAAIAAAAWAAQAAAAHAAEAAAAWAAUAAAACAAEAAAAWAAYAAAABAAIAAAAXAAQAAAAHAAEAAAAXAAUAAAACAAEAAAAXAAYAAAABAAIAAAAYAAQAAAAHAAEAAAAYAAUAAAACAAEAAAAYAAYAAAABAAIAAAAZAAQAAAAHAAEAAAAZAAUAAAACAAEAAAAZAAYAAAABAAIAAAAaAAQAAAAHAAEAAAAaAAUAAAACAAEAAAAaAAYAAAABAAIAAAAbAAQAAAADAAIAAAAbAAUAAAAAAAIAAAAbAAYAAAAEAAIAAAA1AAUAAAAGAAIAAAA1AAYAAAADAAQAAAA2AAUAAAAGAAIAAAA2AAYAAAADAAQAAAA3AAUAAAAGAAIAAAA3AAYAAAADAAQAAAA4AAUAAAAGAAIAAAA4AAYAAAADAAQAAAA5AAUAAAAGAAIAAAA5AAYAAAADAAQAAAA6AAUAAAAGAAIAAAA6AAYAAAADAAQAAAA7AAUAAAAGAAIAAAA7AAYAAAADAAQAAAA8AAUAAAAGAAIAAAA8AAYAAAADAAQAAAA=")
 tile_set = SubResource("TileSet_wkpy8")
 
-[node name="Player" parent="." unique_id=1805131256 instance=ExtResource("1_bx025")]
+[node name="Player" parent="." unique_id=1805131256 groups=["player"] instance=ExtResource("1_bx025")]
 position = Vector2(21, 343)
 
 [node name="Dummy" parent="." unique_id=1733696945 instance=ExtResource("2_ewo1x")]
@@ -169,13 +171,52 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 12)
 layout_mode = 2
 theme = SubResource("Theme_1jncy")
-value = 50.0
+value = 20.0
 show_percentage = false
 
 [node name="HealthDisplayComponent" type="Node" parent="HUD/EnemyPanel" unique_id=1099543461 node_paths=PackedStringArray("health_panel", "icon", "display_label", "health_bar")]
 script = ExtResource("5_1jncy")
+watch_group = &"enemy"
 health_panel = NodePath("..")
 icon = NodePath("../HBox/EnemyIcon")
 display_label = NodePath("../HBox/VBox/EnemyNameLabel")
 health_bar = NodePath("../HBox/VBox/EnemyHealthBar")
+metadata/_custom_type_script = "uid://bqcu4d15x0y4i"
+
+[node name="PlayerPanel" type="PanelContainer" parent="HUD" unique_id=1709419886]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBox" type="HBoxContainer" parent="HUD/PlayerPanel" unique_id=837702278]
+layout_mode = 2
+
+[node name="PlayerIcon" type="TextureRect" parent="HUD/PlayerPanel/HBox" unique_id=1398513349]
+custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_0yc80")
+
+[node name="VBox" type="VBoxContainer" parent="HUD/PlayerPanel/HBox" unique_id=1993512442]
+layout_mode = 2
+
+[node name="PlayerNameLabel" type="Label" parent="HUD/PlayerPanel/HBox/VBox" unique_id=1791858529]
+layout_mode = 2
+text = "Player Name Bug"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="HUD/PlayerPanel/HBox/VBox" unique_id=1802546072]
+custom_minimum_size = Vector2(50, 12)
+layout_mode = 2
+theme = SubResource("Theme_1jncy")
+value = 20.0
+show_percentage = false
+
+[node name="HealthDisplayComponent" type="Node" parent="HUD/PlayerPanel" unique_id=2125268759 node_paths=PackedStringArray("health_panel", "icon", "display_label", "health_bar")]
+script = ExtResource("5_1jncy")
+watch_group = &"player"
+health_panel = NodePath("..")
+icon = NodePath("../HBox/PlayerIcon")
+display_label = NodePath("../HBox/VBox/PlayerNameLabel")
+health_bar = NodePath("../HBox/VBox/PlayerHealthBar")
 metadata/_custom_type_script = "uid://bqcu4d15x0y4i"

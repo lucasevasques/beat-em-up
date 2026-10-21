@@ -1,6 +1,7 @@
 class_name HealthDisplayComponent
 extends Node
 
+@export var watch_group: StringName
 @export var health_panel: PanelContainer
 @export var icon: TextureRect
 @export var display_label: Label
@@ -12,6 +13,8 @@ func _ready() -> void:
 
 
 func _on_entity_attacked(entity: EntityComponent) -> void:
+	if not entity.is_in_group(watch_group):
+		return
 	health_bar.max_value = entity.max_health
 	health_bar.value = entity.health
 	icon.texture = entity.entity_icon

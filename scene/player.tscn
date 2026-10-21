@@ -10,7 +10,7 @@ size = Vector2(30, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yc80"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvtld"]
-size = Vector2(35, 13)
+size = Vector2(20, 19)
 
 [node name="Player" type="CharacterBody2D" unique_id=1805131256]
 script = ExtResource("1_hjaqi")
@@ -31,18 +31,20 @@ position = Vector2(27, -36)
 shape = SubResource("RectangleShape2D_0yc80")
 debug_color = Color(0.30460805, 0.6239604, 0.20496964, 0.41960785)
 
-[node name="EntityComponent" type="Node" parent="." unique_id=1107559517 node_paths=PackedStringArray("entity_parent", "hitbox")]
+[node name="EntityComponent" type="Node" parent="." unique_id=1107559517 node_paths=PackedStringArray("entity_parent", "hitbox") groups=["player"]]
 script = ExtResource("3_fvtld")
 entity_name = "Eu"
 entity_icon = ExtResource("1_xo3ru")
 entity_parent = NodePath("..")
+health = 200
+max_health = 200
 hitbox = NodePath("../HitBox")
 metadata/_custom_type_script = "uid://d0f5612btxi1s"
 
 [node name="HitBox" type="Area2D" parent="." unique_id=2003844579]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=689320459]
-position = Vector2(-0.5, -38.5)
+position = Vector2(0, -37.5)
 shape = SubResource("RectangleShape2D_fvtld")
 debug_color = Color(0.9266004, 0.2332224, 0.36152965, 0.41960785)
 

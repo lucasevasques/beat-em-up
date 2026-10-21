@@ -1,6 +1,8 @@
 class_name EntityComponent
 extends Node
 
+signal entity_died
+
 @export var entity_name: String
 @export var entity_icon: Texture2D
 @export var entity_parent: Node
@@ -18,5 +20,5 @@ func _on_attacked(source: Node, target: Node, damage: float) -> void:
 		health -= damage
 		EventBus.entity_attacked.emit(self)
 		if health <=0:
-			entity_parent.queue_free()
-			
+			entity_died.emit()
+			EventBus.attacked.disconnect(_on_attacked)

@@ -28,3 +28,6 @@ func attack() -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	EventBus.attacked.emit(self, area, 10)
+
+func died() -> void:
+	pass

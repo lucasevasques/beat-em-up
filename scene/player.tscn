@@ -13,6 +13,9 @@ size = Vector2(30, 17)
 size = Vector2(20, 19)
 
 [node name="Player" type="CharacterBody2D" unique_id=1805131256]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_hjaqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=731534580]
@@ -26,6 +29,8 @@ texture = ExtResource("1_xo3ru")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=942250292]
 position = Vector2(27, -36)
+collision_layer = 2
+collision_mask = 29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1627749085]
 shape = SubResource("RectangleShape2D_0yc80")
@@ -42,6 +47,8 @@ hitbox = NodePath("../HitBox")
 metadata/_custom_type_script = "uid://d0f5612btxi1s"
 
 [node name="HitBox" type="Area2D" parent="." unique_id=2003844579]
+collision_layer = 2
+collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=689320459]
 position = Vector2(0, -37.5)

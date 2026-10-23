@@ -1,6 +1,37 @@
+class_name Enemy
 extends CharacterBody2D
 
 @onready var hurtbox_shape: CollisionShape2D = $HurtBox/CollisionShape2D
+
+var player: CharacterBody2D
+var is_player_available: bool = false
+
+var target_acquired_elapsed: float = 0
+
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+
+
+func _ready() -> void:
+	await  get_tree().physics_frame
+	EventBus.player_requested.emit(self)
+	is_player_available = true
+
+
+func _physics_process(delta: float) -> void:
+	if is_player_available == false:
+		return
+	
+	if target_acquired_elapsed > 1:
+		nav_agent.target_position = player.global_position
+		target_acquired_elapsed = 0
+	
+	var next_position: Vector2 = nav_agent.get_next_path_position()
+	velocity = global_position.direction_to(next_position) * 50
+	move_and_slide()
+	
+	target_acquired_elapsed += delta
+
+
 
 func attack() -> void:
 	hurtbox_shape.disabled

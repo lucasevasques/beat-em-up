@@ -41,6 +41,9 @@ color = Color(1, 0.32941177, 1, 1)
 alpha_curve = SubResource("CurveTexture_8fkih")
 
 [node name="Dummy" type="CharacterBody2D" unique_id=1733696945]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_mtq4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1685153082]
@@ -53,6 +56,8 @@ scale = Vector2(0.234375, 0.46875)
 texture = ExtResource("1_rdt0c")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=472854885]
+collision_layer = 4
+collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1584118507]
 position = Vector2(-0.5, -38.5)
@@ -68,6 +73,8 @@ hitbox = NodePath("../HitBox")
 metadata/_custom_type_script = "uid://d0f5612btxi1s"
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=763437582]
+collision_layer = 5
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=243167583]
 position = Vector2(28, -38)
@@ -81,6 +88,9 @@ one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_0yc80")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1741722047]
+debug_enabled = true
 
 [connection signal="entity_died" from="EntityComponent" to="." method="_on_entity_died"]
 [connection signal="entity_died" from="EntityComponent" to="DeathParticles" method="restart"]

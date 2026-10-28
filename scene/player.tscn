@@ -15,7 +15,7 @@ size = Vector2(20, 19)
 [node name="Player" type="CharacterBody2D" unique_id=1805131256]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 15
+collision_mask = 143
 script = ExtResource("1_hjaqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=731534580]

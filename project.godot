@@ -103,6 +103,7 @@ dash={
 2d_physics/layer_5="collectable"
 2d_physics/layer_6="weapon"
 2d_physics/layer_7="hazard"
+2d_physics/layer_8="camera_bounds"
 
 [physics]
 

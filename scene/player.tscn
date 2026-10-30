@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qwyxgdvi4ujo" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://clpcom1m2qkx0" path="res://icon.svg" id="1_xo3ru"]
+[ext_resource type="Texture2D" uid="uid://b5nha6w8mtsj1" path="res://asset/fighter_c.png" id="2_ct4mp"]
 [ext_resource type="Script" uid="uid://d0f5612btxi1s" path="res://script/entity_component.gd" id="3_fvtld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkpy8"]
@@ -11,6 +12,62 @@ size = Vector2(30, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvtld"]
 size = Vector2(20, 19)
+
+[sub_resource type="Animation" id="Animation_s4jxa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/FighterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_oh5ij"]
+resource_name = "attack"
+length = 0.3750125
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/FighterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_hp4bs"]
+resource_name = "idle"
+length = 0.1000033385489136
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/FighterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2vtq"]
+_data = {
+&"RESET": SubResource("Animation_s4jxa"),
+&"attack": SubResource("Animation_oh5ij"),
+&"idle": SubResource("Animation_hp4bs")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1805131256]
 y_sort_enabled = true
@@ -22,10 +79,10 @@ script = ExtResource("1_hjaqi")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_wkpy8")
 
-[node name="Icon" type="Sprite2D" parent="CollisionShape2D" unique_id=2103590771]
-position = Vector2(0, -21.5)
-scale = Vector2(0.234375, 0.46875)
-texture = ExtResource("1_xo3ru")
+[node name="FighterSprite" type="Sprite2D" parent="CollisionShape2D" unique_id=2103590771]
+position = Vector2(9, -56)
+texture = ExtResource("2_ct4mp")
+hframes = 3
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=942250292]
 position = Vector2(27, -36)
@@ -54,5 +111,8 @@ collision_mask = 68
 position = Vector2(0, -37.5)
 shape = SubResource("RectangleShape2D_fvtld")
 debug_color = Color(0.9266004, 0.2332224, 0.36152965, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1502479058]
+libraries/ = SubResource("AnimationLibrary_g2vtq")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

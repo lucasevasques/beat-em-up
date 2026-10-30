@@ -45,6 +45,8 @@ func handle_move(delta: float) -> void:
 
 func _on_horde_finished() -> void:
 	stop_index += 1
-	if stop_index >= stop_positions.size():
+	if stop_index > stop_positions.size() - 1:
 		printerr("No more camera stops!") #camera chegou ao fim
+		#TODO FIM DA FASE, TROCAR DE FASE
+		return
 	current_state = CameraState.MOVE

@@ -7,6 +7,7 @@ var player: CharacterBody2D
 var is_player_available: bool = false
 
 var target_acquired_elapsed: float = 0
+@export var stop_distance: float = 50.0
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
@@ -22,8 +23,13 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if target_acquired_elapsed > 1:
-		nav_agent.target_position = player.global_position
-		target_acquired_elapsed = 0
+		#var offset: Vector2 = Vector2.ZERO
+		
+		if global_position.direction_to(player.global_position) > stop_distance:
+			var direction = (player.global_position - global_position).normalized()
+			target_acquired_elapsed = 0
+			
+			
 	
 	var next_position: Vector2 = nav_agent.get_next_path_position()
 	velocity = global_position.direction_to(next_position) * 50

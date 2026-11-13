@@ -15,6 +15,7 @@ var current_state: State = State.IDLE
 
 @onready var hurtbox_shape: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var hurtbox: Area2D = $Hurtbox
+@onready var hitbox: Area2D = $HitBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var fighter_sprite: Sprite2D = $CollisionShape2D/FighterSprite
 
@@ -50,8 +51,10 @@ func _physics_process(delta: float) -> void:
 				
 				if fighter_sprite.flip_h == true:
 					hurtbox.scale.x = -1
+					hitbox.scale.x = -1
 				else :
 					hurtbox.scale.x = 1
+					hitbox.scale.x = 1
 		State.JUMP:
 			pass
 		State.ATTACK:
@@ -91,3 +94,15 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func died() -> void:
 	pass
+
+func hit_feedback() -> void:
+	var tween: Tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_loops(3)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.2).from(Color(0.0, 0.0, 0.0, 0.0))
+	tween.set_loops(1)
+	tween.tween_property(self, "scale:y", scale.y, 0.2).from(scale.y * 1.2)
+
+
+func _on_damage_taken() -> void:
+	hit_feedback()

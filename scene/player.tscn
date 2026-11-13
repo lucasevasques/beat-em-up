@@ -12,7 +12,7 @@ size = Vector2(30, 17)
 size = Vector2(49, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvtld"]
-size = Vector2(20, 19)
+size = Vector2(24.5, 64)
 
 [sub_resource type="Animation" id="Animation_s4jxa"]
 length = 0.001
@@ -124,7 +124,7 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_wkpy8")
 
 [node name="FighterSprite" type="Sprite2D" parent="CollisionShape2D" unique_id=2103590771]
-position = Vector2(9, -56)
+position = Vector2(0, -61)
 texture = ExtResource("2_ct4mp")
 hframes = 8
 vframes = 3
@@ -134,7 +134,7 @@ collision_layer = 2
 collision_mask = 29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1627749085]
-position = Vector2(29.5, -82)
+position = Vector2(48, -78)
 shape = SubResource("RectangleShape2D_0yc80")
 debug_color = Color(0.30460805, 0.6239604, 0.20496964, 0.41960785)
 
@@ -149,11 +149,12 @@ hitbox = NodePath("../HitBox")
 metadata/_custom_type_script = "uid://d0f5612btxi1s"
 
 [node name="HitBox" type="Area2D" parent="." unique_id=2003844579]
+scale = Vector2(-1, 1)
 collision_layer = 2
 collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=689320459]
-position = Vector2(0, -37.5)
+position = Vector2(-1.75, -57)
 shape = SubResource("RectangleShape2D_fvtld")
 debug_color = Color(0.9266004, 0.2332224, 0.36152965, 0.41960785)
 
@@ -162,3 +163,4 @@ libraries/ = SubResource("AnimationLibrary_g2vtq")
 autoplay = &"idle"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="damage_taken" from="EntityComponent" to="." method="_on_damage_taken"]

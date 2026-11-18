@@ -102,6 +102,7 @@ func hit_feedback() -> void:
 	tween.tween_property(self, "modulate", Color.WHITE, 0.2).from(Color(0.0, 0.0, 0.0, 0.0))
 	tween.set_loops(1)
 	tween.tween_property(self, "scale:y", scale.y, 0.2).from(scale.y * 1.2)
+	tween.tween_property(self, "scale:y", 1, 0.2)
 
 
 func _on_damage_taken() -> void:

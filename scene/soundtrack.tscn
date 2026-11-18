@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bodbhl813ctij"]
+
+[ext_resource type="AudioStream" uid="uid://8bejxemuln7y" path="res://asset/theme-beat_em_up.mp3" id="1_nr1y7"]
+
+[node name="Soundtrack" type="AudioStreamPlayer" unique_id=1889059841]
+stream = ExtResource("1_nr1y7")
+autoplay = true
+bus = &"Soundtrack"
+parameters/looping = true
